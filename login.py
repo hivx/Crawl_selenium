@@ -47,13 +47,13 @@ time.sleep(3)
 WebDriverWait(driver, 20).until(EC.url_contains("/home"))
 
 # Bước 4: Thực hiện tìm kiếm bằng cách mở URL tìm kiếm sau khi đăng nhập
-search_url = "https://twitter.com/search?q=%23blockchain%20%23KOL&src=typed_query&f=user"
+search_url = "https://twitter.com/search?q=%23btc%20%23bnb&src=typed_query&f=user"
 driver.get(search_url)
 
 time.sleep(5)
 
 # Mở file để ghi dữ liệu
-with open("twitter_kol_cleaned.txt", "w", encoding="utf-8") as file:
+with open("twitter_kol_cleaned_2.txt", "w", encoding="utf-8") as file:
     
     # Lấy chiều cao trang ban đầu
     last_height = driver.execute_script("return document.body.scrollHeight")
@@ -68,10 +68,17 @@ with open("twitter_kol_cleaned.txt", "w", encoding="utf-8") as file:
             # Tìm tất cả các thẻ span bên trong thẻ div timeline_div
             spans = timeline_div.find_elements(By.TAG_NAME, "span")
 
-            # Ghi dữ liệu của các thẻ span vào file
             for span in spans:
-                file.write(span.text + "\n")
-            
+                # Kiểm tra xem thẻ span có nằm bên trong thẻ div[dir="auto"] hay không
+                parent_divs = span.find_elements(By.XPATH, './ancestor::div[@dir="auto"]')
+                
+                # Debug: In ra text của span và số lượng parent div tìm thấy
+                print(f"Span text: {span.text}, Parent div count: {len(parent_divs)}")
+                
+                # Nếu không có thẻ div[dir="auto"] làm cha, thì ghi dữ liệu
+                if len(parent_divs) == 0:
+                    file.write(span.text + "\n")
+
         except Exception as e:
             print("Lỗi khi tìm thẻ div hoặc ghi dữ liệu: ", e)
         
@@ -90,6 +97,7 @@ with open("twitter_kol_cleaned.txt", "w", encoding="utf-8") as file:
 
         # Cập nhật chiều cao trang mới để tiếp tục lăn
         last_height = new_height
+        
 # Thời gian chờ
 time.sleep(1000)
 
