@@ -14,37 +14,30 @@ driver = webdriver.Chrome(options=options)
 url = "https://twitter.com/i/flow/login"
 driver.get(url)
 
-time.sleep(3)
-
 # Bước 1: Nhập email
-email_input = WebDriverWait(driver, 20).until(
+email_input = WebDriverWait(driver, 60).until(
     EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[autocomplete="username"]'))
 )
 email_input.send_keys("niknamenr01@gmail.com")  # Thay bằng email của bạn
 email_input.send_keys(Keys.ENTER)
 
-time.sleep(3)
-
 # Bước 2: Nhập nickname sau khi trang load (có thể trang yêu cầu xác minh trước nickname)
-nickname_input = WebDriverWait(driver, 20).until(
+nickname_input = WebDriverWait(driver, 60).until(
     EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[autocomplete="on"]'))
 )
 nickname_input.send_keys("hieuervxp")  # Thay bằng nickname của bạn
 nickname_input.send_keys(Keys.ENTER)
 
-time.sleep(3)
-
 # Bước 3: Nhập mật khẩu sau khi trang load
-password_input = WebDriverWait(driver, 20).until(
+password_input = WebDriverWait(driver, 60).until(
     EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[name="password"]'))
 )
 password_input.send_keys("testpython")  # Thay bằng mật khẩu của bạn
 password_input.send_keys(Keys.ENTER)
 
-time.sleep(3)
 
 # Chờ cho đến khi quá trình đăng nhập hoàn tất
-WebDriverWait(driver, 20).until(EC.url_contains("/home"))
+WebDriverWait(driver, 60).until(EC.url_contains("/home"))
 
 # Bước 4: Thực hiện tìm kiếm bằng cách mở URL tìm kiếm sau khi đăng nhập
 search_url = "https://twitter.com/search?q=%23btc%20%23bnb&src=typed_query&f=user"
@@ -53,7 +46,7 @@ driver.get(search_url)
 time.sleep(5)
 
 # Mở file để ghi dữ liệu
-with open("twitter_kol_cleaned_2.txt", "w", encoding="utf-8") as file:
+with open("data/data_test.txt", "w", encoding="utf-8") as file:
     
     # Lấy chiều cao trang ban đầu
     last_height = driver.execute_script("return document.body.scrollHeight")
@@ -86,7 +79,7 @@ with open("twitter_kol_cleaned_2.txt", "w", encoding="utf-8") as file:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
         # Chờ 3 giây để trang tải thêm nội dung
-        time.sleep(3)
+        time.sleep(5)
 
         # Lấy chiều cao trang mới sau khi lăn chuột
         new_height = driver.execute_script("return document.body.scrollHeight")
