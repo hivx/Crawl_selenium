@@ -22,17 +22,17 @@ try:
     # Mở file để ghi dữ liệu
     with open("vr360/vr_new.txt", "w", encoding="utf-8") as file:
         try:
-            # Chờ iframe đầu tiên xuất hiện và chuyển ngữ cảnh sang iframe này
-            outer_iframe = WebDriverWait(driver, 60).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "iframe[src*='globe/index.php?code=eccbc87e4b5ce2fe28308fd9f2a7baf3']"))
+            # Chờ iframe đầu tiên xuất hiện và chuyển đổi ngữ cảnh sang iframe đầu tiên
+            first_iframe = WebDriverWait(driver, 60).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "iframe[src*='globe/index.php']"))
             )
-            driver.switch_to.frame(outer_iframe)
+            driver.switch_to.frame(first_iframe)
 
-            # Chờ iframe bên trong xuất hiện và chuyển ngữ cảnh sang iframe bên trong
-            inner_iframe = WebDriverWait(driver, 30).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "iframe[src*='viewer/index.php?code=903ce9225fca3e988c2af215d4e544d3']"))
+            # Chờ iframe thứ hai xuất hiện trong iframe đầu tiên và chuyển đổi ngữ cảnh sang iframe thứ hai
+            second_iframe = WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "iframe[src*='../viewer/index.php']"))
             )
-            driver.switch_to.frame(inner_iframe)
+            driver.switch_to.frame(second_iframe)
 
             # Tìm thẻ <div> với class là "list_slider"
             list_slider_div = WebDriverWait(driver, 20).until(

@@ -1,9 +1,9 @@
-Data-panorama: pano_1706233411370.jpg
-Data-panorama: pano_1705246440803.jpg
-Data-panorama: pano_1705246449931.jpg
-Data-panorama: pano_1705246459164.jpg
-Data-panorama: pano_1705246469431.jpg
-Data-panorama: pano_1705246478678.jpg
-Data-panorama: pano_1705246486393.jpg
-Data-panorama: pano_1705246494192.jpg
-Data-panorama: pano_1706234113832.jpg
+pano_1706233411370.jpg
+pano_1705246440803.jpg
+pano_1705246449931.jpg
+pano_1705246459164.jpg
+pano_1705246469431.jpg
+pano_1705246478678.jpg
+pano_1705246486393.jpg
+pano_1705246494192.jpg
+pano_1706234113832.jpg

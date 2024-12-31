@@ -24,7 +24,7 @@ try:
         try:
             # Chờ iframe xuất hiện và chuyển đổi ngữ cảnh sang iframe
             iframe = WebDriverWait(driver, 60).until(
-                EC.presence_of_element_located((By.CSS_SELECTOR, "iframe[src*='globe/index.php?code=eccbc87e4b5ce2fe28308fd9f2a7baf3']"))
+                EC.presence_of_element_located((By.CSS_SELECTOR, "iframe[src*='globe/index.php']"))
             )
             driver.switch_to.frame(iframe)
             
