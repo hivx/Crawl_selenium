@@ -5,6 +5,7 @@ file:<br>
 - login.py crawl KOL of twitter <br>
 - idPanoVr.py crawl id_pano from https://diachidohanoi.vr360.com.vn/ <br>
 - userKol.py - cleaned data KOL <br>
+- newIdPano.py - crwal sau hon <br>
 
 folder:
 <br>- data: data KOL
